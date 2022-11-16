@@ -6,7 +6,7 @@ module.exports = ({ clear = true }) => {
 	unhandled();
 	welcome({
 		title: `create-web-component-cli`,
-		tagLine: `by lee_ro`,
+		tagLine: `by leero`,
 		description: pkg.description,
 		version: pkg.version,
 		bgColor: '#36BB09',

@@ -4,7 +4,7 @@ const meowHelp = require('cli-meow-help');
 const flags = {
 	clear: {
 		type: `boolean`,
-		default: true,
+		default: false,
 		alias: `c`,
 		desc: `Clear the console`
 	},
@@ -23,6 +23,17 @@ const flags = {
 		type: `boolean`,
 		alias: `v`,
 		desc: `Print CLI version`
+	},
+	name: {
+		type: 'string',
+		alias: 'n',
+		desc: '组件名称'
+	},
+	type: {
+		type: 'string',
+		default: 'functional',
+		alias: 't',
+		desc: '组件类型：functional or class'
 	}
 };
 
@@ -31,7 +42,7 @@ const commands = {
 };
 
 const helpText = meowHelp({
-	name: `cwcc`,
+	name: `mcc`,
 	flags,
 	commands
 });
