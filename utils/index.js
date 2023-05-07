@@ -1,7 +1,7 @@
 const path = require('path');
 const { TEMPLATE_PATH } = require('./constants');
 
-module.exports.firstToUppercase = code => {
+const firstToUppercase = code => {
 	return code.replace(/^\S/, s => s.toLocaleUpperCase());
 };
 
@@ -18,3 +18,5 @@ module.exports.replaceComponentName = (name, content) => {
 module.exports.mkTemplateFilePath = fileName => {
 	return path.join(__dirname, TEMPLATE_PATH, fileName);
 };
+
+module.exports.firstToUppercase = firstToUppercase;
