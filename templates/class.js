@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class COMPONENT_NAME extends Component {
 	render() {
-		return <div className={styles.COMPONENT_NAME}>COMPONENT_NAME</div>;
+		return <div className={styles.componentName}>COMPONENT_NAME</div>;
 	}
 }
 

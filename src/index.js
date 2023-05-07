@@ -5,7 +5,13 @@ const {
 	readTemplatePromise,
 	writeFilePromise
 } = require('../utils/actions');
-const { replaceComponentName, mkTemplateFilePath } = require('../utils/utils');
+
+const {
+	replaceComponentName,
+	mkTemplateFilePath,
+	firstToUppercase
+} = require('../utils');
+
 const {
 	STYLE_FILE,
 	SCRIPT_COMPONENT_FILE,
@@ -14,14 +20,19 @@ const {
 
 module.exports = async function generationWebComponent({ name, type }) {
 	const currentPath = process.cwd();
-	const dirPath = path.join(currentPath, name);
+
+	// 创建生成组件的文件夹路径（例如：App）
+	const COMPONENT_NAME = firstToUppercase(name);
+	const dirPath = path.join(currentPath, COMPONENT_NAME);
+
+	// 创建【模板脚本文件路径（templates/functional.js）】和【生成脚本文件路径（App/index.jsx）】
 	const scriptTplFile = SCRIPT_TEMPLATE_FILE_MAP[type];
+	const scriptTplFilePath = mkTemplateFilePath(scriptTplFile);
+	const scriptCompFilePath = path.join(dirPath, SCRIPT_COMPONENT_FILE);
 
-	const scriptTplFilePath = mkTemplateFilePath(scriptTplFile); // 脚本模板文件
-	const scriptCompFilePath = path.join(dirPath, SCRIPT_COMPONENT_FILE); // 脚本组件文件
-
-	const styleTplFilePath = mkTemplateFilePath(STYLE_FILE); // 样式模板文件
-	const styleCompFilePath = path.join(dirPath, STYLE_FILE); // 样式组件文件
+	// 创建【 模板样式文件路径（templates/index.less）】和【（App/index.less）】
+	const styleTplFilePath = mkTemplateFilePath(STYLE_FILE);
+	const styleCompFilePath = path.join(dirPath, STYLE_FILE);
 
 	/**
 	 * 1.创建文件夹
@@ -48,9 +59,10 @@ module.exports = async function generationWebComponent({ name, type }) {
 			return writeFilePromise(styleCompFilePath, fileContent);
 		})
 		.then(() => {
-			console.info(`组件${name}创建成功！`);
+			console.info(`组件${COMPONENT_NAME}创建成功！`);
 		})
 		.catch(err => {
+			console.info(`组件${COMPONENT_NAME}创建失败！`);
 			throw err;
 		});
 };
