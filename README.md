@@ -19,7 +19,3 @@
 ## API
 
 cwcc [-v] [-n `<componentName>`] [-t `<componentType>`]
-
-## Keywords
-
-react cli
