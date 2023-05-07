@@ -1,7 +1,7 @@
 {
 	"name": "create-web-component-cli",
 	"description": "Create Web Component",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"license": "MIT",
 	"bin": {
 		"create-web-component-cli": "index.js",
